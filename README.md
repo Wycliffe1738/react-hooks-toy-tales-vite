@@ -1,44 +1,126 @@
-# Practice Challenge: Toy Tales
+# Toy Tales – React CRUD Application
 
-You've got a friend in need! Again!
+## Project Description
 
-Andy has misplaced of his toys (again) and need your help to organize them.
+Toy Tales is a React application that helps Andy manage his collection of toys. Users can view toys, add new toys, increase their likes, and donate toys by removing them from the collection.
 
-## Setup
+The application uses React for the user interface and JSON Server as a simple REST API backend.
 
-All the information about Andy's toys can be found in the `db.json` file. We'll
-be using `json-server` to create a RESTful API for our database.
+## Technologies Used
 
-Run `npm install` to install our dependencies.
+- React
+- JavaScript
+- HTML and CSS
+- Vite
+- JSON Server
+- Vitest
+- React Testing Library
 
-Then, run `npm run server` to start up `json-server` on `http://localhost:3001`.
+## Getting Started
 
-In another tab, run `npm run dev` to start up our React app at `http://localhost:3000`.
+### 1. Clone the repository
 
-In another tab, run `npm run test` to run the test suite.
+```bash
+git clone https://github.com/Wycliffe1738/react-hooks-toy-tales-vite.git
+cd react-hooks-toy-tales-vite
+```
 
-Before you start building out the application, the first step that you should
-take is to examint the current code and component hierarchy. This will tell you 
-how components can pass data to each other as well as where that information should 
-be stored.
+### 2. Install dependencies
 
-## Deliverables
+```bash
+npm install
+```
 
-- _When our application loads_, make a GET request to `/toys` to fetch the toy
-  array. Given your component tree, think about which component should be
-  responsible for the array. After you have put the data in the proper
-  component, your next job is to render the `ToyCard` components on the page.
+### 3. Start the backend server
 
-- _When the `ToyForm` is submitted_, make a POST request to `/toys` to save a
-  new toy to the server. Using the ideas of controlled form and inverse data
-  flow, think about how to render a new `ToyCard` for the toy that you created.
+```bash
+npm run server
+```
 
-- _When the `Donate to Goodwill` button is clicked_, make a DELETE request to
-  `/toys/:id` with the ID of the toy that was clicked to delete the toy from the
-  server. The `ToyCard` that you clicked on should also be removed from the DOM.
+The JSON Server API runs at:
 
-- _When the like button is clicked_, make a PATCH request to `/toys/:id` with
-  the id of the toy that was clicked, along with the new number of likes (this
-  should be sent in the body of the PATCH request, as a object:
-  `{ likes: 10 }`), to update the toy on the server. Clicking on the button
-  should also increase the number of likes on the DOM.
+`http://localhost:3001`
+
+The toys are stored in `db.json`.
+
+### 4. Start the React application
+
+Open another terminal in the project directory and run:
+
+```bash
+npm run dev
+```
+
+Open the local URL displayed by Vite, normally:
+
+`http://localhost:5173`
+
+## Application Features
+
+### 1. Display Toys (GET)
+
+When the application loads, it sends a GET request to `/toys` to retrieve all toys from the backend.
+
+The toys are stored in the App component's state and displayed using ToyContainer and ToyCard components.
+
+### 2. Add a Toy (POST)
+
+Users can open the toy form and enter a toy's name and image URL.
+
+When the form is submitted, a POST request saves the new toy to the backend. The new toy is then added to the displayed collection with an initial like count of zero.
+
+### 3. Like a Toy (PATCH)
+
+When a user clicks the Like button, a PATCH request updates the selected toy's likes on the backend.
+
+The updated toy is reflected in the application without changing the order of the other toys.
+
+### 4. Donate a Toy (DELETE)
+
+When a user clicks the Donate to GoodWill button, a DELETE request removes the selected toy from the backend.
+
+The toy is also removed from the displayed collection.
+
+## Running the Tests
+
+Run the test suite using:
+
+```bash
+npm run test -- --run
+```
+
+The application has passed all five provided tests covering toy display, toy creation, liking toys, and deleting toys.
+
+## Production Build
+
+To create a production build, run:
+
+```bash
+npm run build
+```
+
+## Project Structure
+
+```text
+react-hooks-toy-tales-vite/
+├── db.json
+├── public/
+├── src/
+│   ├── __tests__/
+│   ├── components/
+│   │   ├── App.jsx
+│   │   ├── Header.jsx
+│   │   ├── ToyCard.jsx
+│   │   ├── ToyContainer.jsx
+│   │   └── ToyForm.jsx
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+## Application Screenshot
+
+![Toy Tales Application](public/toy-tales-screenshot.png)
